@@ -13,7 +13,7 @@ const morgan = require("morgan");
 
 let db;
 // middleware
-app.use(morgan("short", {"stream": fs.createWriteStream("./app.logs") }));
+app.use(morgan("short", { stream: fs.createWriteStream("./app.logs") }));
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -21,17 +21,19 @@ app.get("/", (req, res) => {
 });
 
 //connecting to mongodb
-MongoClient.connect(mongoURL,(err, client) => {
-  if(err) console.log("error while connecting!");
-  db=client.db('my_app_data');
+MongoClient.connect(mongoURL, (err, client) => {
+  if (err) console.log("error while connecting!");
+  db = client.db("my_app_data");
   app.listen(port, () => {
     console.log(`listening to ${port}`);
   });
 });
 
 app.get("/categories", (req, res) => {
-    db.collection('categories').find().toArray((err,result)=>{
-      if(err) throw err;
+  db.collection("categories")
+    .find()
+    .toArray((err, result) => {
+      if (err) throw err;
       res.send(result);
     });
-  });
+});
