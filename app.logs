@@ -1,3 +1,7 @@
-::ffff:127.0.0.1 - GET / HTTP/1.1 200 21 - 2.916 ms
-::ffff:127.0.0.1 - GET /favicon.ico HTTP/1.1 404 150 - 2.454 ms
-::ffff:127.0.0.1 - GET /categories HTTP/1.1 200 929 - 147.584 ms
+::ffff:127.0.0.1 - GET / HTTP/1.1 200 21 - 5.845 ms
+::ffff:127.0.0.1 - GET /favicon.ico HTTP/1.1 404 150 - 1.955 ms
+::ffff:127.0.0.1 - GET /categories/ HTTP/1.1 200 929 - 215.566 ms
+::ffff:127.0.0.1 - GET /categories/books HTTP/1.1 200 3129 - 131.522 ms
+::ffff:127.0.0.1 - GET /categories/men's_clothes HTTP/1.1 200 2 - 105.023 ms
+::ffff:127.0.0.1 - GET /categories/men'sclothes HTTP/1.1 200 2 - 117.530 ms
+::ffff:127.0.0.1 - GET /categories/mens_clothes HTTP/1.1 200 3945 - 154.575 ms

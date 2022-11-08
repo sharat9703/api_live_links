@@ -29,6 +29,8 @@ MongoClient.connect(mongoURL, (err, client) => {
   });
 });
 
+
+//api to get list of categories
 app.get("/categories", (req, res) => {
   db.collection("categories")
     .find()
@@ -36,4 +38,14 @@ app.get("/categories", (req, res) => {
       if (err) throw err;
       res.send(result);
     });
+});
+
+//api to get all items of any category=>
+
+app.get("/categories/:category_name",(req,res)=>{
+let category_name = req.params.category_name;
+  db.collection(category_name).find().toArray((err,result)=>{
+    if(err) throw err;
+    res.send(result);    
+  });
 });
