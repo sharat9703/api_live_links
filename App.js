@@ -49,3 +49,40 @@ let category_name = req.params.category_name;
     res.send(result);    
   });
 });
+
+// api to get items from subcategory(fashion)=>
+
+app.get('/fashion/:id',(req,res)=>{
+let id = Number(req.params.id);
+db.collection('fashion').find({sub_category_id:id}).toArray((err,result)=>{
+  if(err) throw err;
+  res.send(result);
+});
+
+});
+
+// api to get items from subcategory(electronics)=>
+
+app.get('/electronics/:id',(req,res)=>{
+  let id = Number(req.params.id);
+  db.collection('electronics').find({sub_category_id:id}).toArray((err,result)=>{
+    if(err) throw err;
+    res.send(result);
+  });
+  
+  });
+
+  //api to get details of a product
+
+  app.get('/product/:product_name',(req,res)=>{
+let product_name = req.params.product_name;
+let item_id = Number(req.query.item_id);
+let query={};
+if(item_id){
+  query={item_id: item_id};
+}
+db.collection(product_name).find(query).toArray((err,result)=>{
+  if(err) throw err;
+  res.send(result);
+});
+  });
