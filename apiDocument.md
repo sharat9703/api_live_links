@@ -19,3 +19,14 @@ local: http://localhost:2500/electronics/31, http://localhost:2500/electronics/3
 
 # page 2
 
+## api for particular item details
+local: http://localhost:2500/product/books?item_id=3
+live: 
+
+## filtered api wrt popularity(stars)
+local: http://localhost:2500/filter/by-stars/kids_clothes 
+
+## filtered api wrt price (ascending and descending sort)
+local: http://localhost:2500/filter/by-price/home_and_kitchen?lcost=200&hcost=500
+ascending : http://localhost:2500/filter/by-price/home_and_kitchen
+descending : http://localhost:2500/filter/by-price/home_and_kitchen?sort=-1

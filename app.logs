@@ -1,3 +1,6 @@
-::ffff:127.0.0.1 - GET /product/fashion?item_id=24 HTTP/1.1 200 401 - 114.879 ms
-::ffff:127.0.0.1 - GET /product/books?item_id=2 HTTP/1.1 200 308 - 112.810 ms
-::ffff:127.0.0.1 - GET /product/books?item_id=3 HTTP/1.1 200 333 - 137.129 ms
+::ffff:127.0.0.1 - GET //filter/by-price/fashion HTTP/1.1 404 163 - 5.783 ms
+::ffff:127.0.0.1 - GET //filter/by-price/fashion HTTP/1.1 404 163 - 2.184 ms
+::ffff:127.0.0.1 - GET //filter/by-price/books HTTP/1.1 404 161 - 1.224 ms
+::ffff:127.0.0.1 - GET /filter/by-price/fashion HTTP/1.1 200 12008 - 161.109 ms
+::ffff:127.0.0.1 - GET /filter/by-price/home_and_kitchen HTTP/1.1 200 4081 - 148.172 ms
+::ffff:127.0.0.1 - GET /filter/by-price/home_and_kitchen?lcost=200&hcost=500 HTTP/1.1 200 1663 - 134.729 ms

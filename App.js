@@ -91,3 +91,41 @@ app.get("/product/:product_name", (req, res) => {
       res.send(result);
     });
 });
+
+//filtered api based on popularity
+
+app.get('/filter/by-stars/:product',(req,res)=>{
+let product_name=req.params.product;
+let query={stars:{$gt:4.2}};
+db.collection(product_name).find(query).toArray((err,result)=>{
+  if(err) throw err;
+  res.send(result);
+});
+});
+
+// filtered api wrt cost 
+
+app.get('/filter/by-price/:product',(req,res)=>{
+  let product_name=req.params.product;
+  let lcost = Number(req.query.lcost);
+  let hcost = Number(req.query.hcost);
+  let query={new_price:{$gt:40}};
+  let sort = {new_price:1};
+if(lcost && hcost) {
+  query= {new_price:{$lt:hcost,$gt:lcost}};
+}
+else if(!lcost && hcost) {
+  query={new_price:{$lt:hcost,$gt:40}};
+}
+else if(lcost && !hcost) {
+  query={new_price:{$gt:lcost}};
+}
+
+if(req.query.sort){
+  sort ={new_price:Number(req.query.sort)};
+}
+db.collection(product_name).find(query).sort(sort).toArray((err,result)=>{
+  if(err) throw err;
+  res.send(result);
+});
+});
