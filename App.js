@@ -8,6 +8,7 @@ let mongo = require("mongodb");
 let MongoClient = mongo.MongoClient;
 let port = process.env.PORT || 9800;
 let mongoURL = process.env.MongoLive;
+let bodyParser = require("body-parser");
 
 const morgan = require("morgan");
 
@@ -15,7 +16,10 @@ let db;
 // middleware
 app.use(morgan("short", { stream: fs.createWriteStream("./app.logs") }));
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+//API//
 app.get("/", (req, res) => {
   res.send("Amazon Clone Site!");
 });
@@ -94,38 +98,56 @@ app.get("/product/:product_name", (req, res) => {
 
 //filtered api based on popularity
 
-app.get('/filter/by-stars/:product',(req,res)=>{
-let product_name=req.params.product;
-let query={stars:{$gt:4.2}};
-db.collection(product_name).find(query).toArray((err,result)=>{
-  if(err) throw err;
-  res.send(result);
-});
+app.get("/filter/by-stars/:product", (req, res) => {
+  let product_name = req.params.product;
+  let query = { stars: { $gt: 4.2 } };
+  db.collection(product_name)
+    .find(query)
+    .toArray((err, result) => {
+      if (err) throw err;
+      res.send(result);
+    });
 });
 
-// filtered api wrt cost 
+// filtered api wrt cost
 
-app.get('/filter/by-price/:product',(req,res)=>{
-  let product_name=req.params.product;
+app.get("/filter/by-price/:product", (req, res) => {
+  let product_name = req.params.product;
   let lcost = Number(req.query.lcost);
   let hcost = Number(req.query.hcost);
-  let query={new_price:{$gt:40}};
-  let sort = {new_price:1};
-if(lcost && hcost) {
-  query= {new_price:{$lt:hcost,$gt:lcost}};
-}
-else if(!lcost && hcost) {
-  query={new_price:{$lt:hcost,$gt:40}};
-}
-else if(lcost && !hcost) {
-  query={new_price:{$gt:lcost}};
-}
+  let query = { new_price: { $gt: 40 } };
+  let sort = { new_price: 1 };
+  if (lcost && hcost) {
+    query = { new_price: { $lt: hcost, $gt: lcost } };
+  } else if (!lcost && hcost) {
+    query = { new_price: { $lt: hcost, $gt: 40 } };
+  } else if (lcost && !hcost) {
+    query = { new_price: { $gt: lcost } };
+  }
 
-if(req.query.sort){
-  sort ={new_price:Number(req.query.sort)};
-}
-db.collection(product_name).find(query).sort(sort).toArray((err,result)=>{
+  if (req.query.sort) {
+    sort = { new_price: Number(req.query.sort) };
+  }
+  db.collection(product_name)
+    .find(query)
+    .sort(sort)
+    .toArray((err, result) => {
+      if (err) throw err;
+      res.send(result);
+    });
+});
+
+//filter by discount
+app.get('/filter/by-discount/:product',(req,res)=>{
+  let product_name = req.params.product;
+  let discount = req.params.discount;
+let query={discount:{$gt:Number(discount)}};
+
+ddb.collection(product_name).find(query).toArray((err,result)=>{
   if(err) throw err;
   res.send(result);
 });
 });
+
+//placing the order
+
