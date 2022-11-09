@@ -10,7 +10,7 @@ live: https://amazon--clone-site.herokuapp.com/categories
 ## API to get list of all items of any category
 
 local: http://localhost:2500/categories/books, http://localhost:2500/categories/home_and_kitchen ...etc
-live: https://amazon--clone-site.herokuapp.com/categories/books, https://amazon--clone-site.herokuapp.com/home_and_kitchen ...
+live: https://amazon--clone-site.herokuapp.com/categories/books, https://amazon--clone-site.herokuapp.com/categories/home_and_kitchen ...
 
 ## API to get list of all items in sub_category(fashion)(11-men's clothes,12-women's,13-kids clothes)
 
