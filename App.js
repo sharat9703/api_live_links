@@ -189,3 +189,12 @@ if(err) throw err;
 res.send(`Order Updated!`);
     });
 });
+
+//API to delete orders
+app.delete('/deleteOrder/:id',(req,res)=>{
+  let _id = mongo.ObjectId(req.params.id);
+  db.collection('orders').deleteOne({_id},(err,result)=>{
+    if(err) throw err;
+    res.send("Order Deleted!");
+  });
+});  
