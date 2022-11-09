@@ -142,7 +142,7 @@ app.get('/filter/by-discount/:product/:discount',(req,res)=>{
   let product_name = req.params.product;
   let discount = req.params.discount;
 let query={discount:{$gt:Number(discount)}};
-
+console.log(discount);
 db.collection(product_name).find(query).toArray((err,result)=>{
   if(err) throw err;
   res.send(result);
@@ -150,4 +150,42 @@ db.collection(product_name).find(query).toArray((err,result)=>{
 });
 
 //placing the order
+app.post('/placeOrder',(req,res)=>{
+  console.log(req.body);
+  db.collection('orders').insert(req.body,(err,result)=>{
+    if(err) throw err;
+    
+  });
+  res.send("Order is placed!");
+});
 
+//api to get orders
+
+app.get('/orders',(req,res)=>{
+  let email = req.query.email;
+  let query={};
+  if(email){
+    query= {email:email};
+    //query={email};
+  }
+db.collection('orders').find(query).toArray((err,result)=>{
+  if(err) throw err;
+  res.send(result);
+});
+});
+
+//api to update orders
+app.put('/updateOrder/:id',(req,res)=>{
+  let orderId = Number(req.params.id);
+  db.collection('orders').updateOne({orderId:orderId},
+    {
+      $set:{
+"status":req.body.status,
+"bank_name":req.body.bank_name,
+"date":req.body.date
+      }
+    },(err,result)=>{
+if(err) throw err;
+res.send(`Order Updated!`);
+    });
+});
