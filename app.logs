@@ -1,1 +1,2 @@
-::ffff:127.0.0.1 - GET /filter/by-discount/books/20 HTTP/1.1 200 1881 - 167.115 ms
+::1 - PUT /updateOrder/3 HTTP/1.1 200 14 - 1555.009 ms
+::1 - GET /orders HTTP/1.1 200 819 - 3293.152 ms
