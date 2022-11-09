@@ -30,3 +30,7 @@ local: http://localhost:2500/filter/by-stars/kids_clothes
 local: http://localhost:2500/filter/by-price/home_and_kitchen?lcost=200&hcost=500
 ascending : http://localhost:2500/filter/by-price/home_and_kitchen
 descending : http://localhost:2500/filter/by-price/home_and_kitchen?sort=-1
+live: 
+
+## filtered api wrt discount
+local: localhost:2500/filter/by-discount/books/20

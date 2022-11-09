@@ -138,12 +138,12 @@ app.get("/filter/by-price/:product", (req, res) => {
 });
 
 //filter by discount
-app.get('/filter/by-discount/:product',(req,res)=>{
+app.get('/filter/by-discount/:product/:discount',(req,res)=>{
   let product_name = req.params.product;
   let discount = req.params.discount;
 let query={discount:{$gt:Number(discount)}};
 
-ddb.collection(product_name).find(query).toArray((err,result)=>{
+db.collection(product_name).find(query).toArray((err,result)=>{
   if(err) throw err;
   res.send(result);
 });
