@@ -1,2 +1,0 @@
-::ffff:127.0.0.1 - GET / HTTP/1.1 304 - - 7.691 ms
-::ffff:127.0.0.1 - GET /categories/ HTTP/1.1 200 929 - 145.752 ms
