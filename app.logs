@@ -1,0 +1,3 @@
+::ffff:127.0.0.1 - GET /categories/ HTTP/1.1 200 929 - 212.086 ms
+::ffff:127.0.0.1 - GET /categories/mens_clothes HTTP/1.1 200 3945 - 190.855 ms
+::ffff:127.0.0.1 - GET /categories/womens_clothes HTTP/1.1 200 4058 - 114.371 ms
