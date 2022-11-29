@@ -1,2 +1,0 @@
-::1 - DELETE /deleteOrder/636b7dc8a50f31223a056f75 HTTP/1.1 200 14 - 1220.679 ms
-::1 - GET /orders HTTP/1.1 200 622 - 4567.601 ms
